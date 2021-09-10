@@ -3,7 +3,9 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
+azure-functions-durable
 azure-keyvault-keys
+azure-keyvault-secrets
 azure-identity
 azure-storage-blob
 azure-mgmt-storage
