@@ -1,23 +1,32 @@
-[{
-  "topic": "/subscriptions/7c1d967f-37f1-4047-bef7-05af9aa80fe2/resourceGroups/serverless-rg/providers/Microsoft.EventGrid/systemTopics/ssattiraju-events-topic",
-  "subject": "/blobServices/default/containers/{containername}/blobs/blobname.jpg",
-  "eventType": "Microsoft.KeyVault.KeyNearExpiry",
-  "eventTime": "2018-01-23T17:02:19.6069787Z",
-  "id": "7b11c4ce-1c34-4416-848b-1730e766f126",
-  "data": {
-    "api": "PutBlockList",
-    "clientRequestId": "7b11c4ce-1c34-4416-848b-1730e766f126",
-    "requestId": "7b11c4ce-1c34-4416-848b-1730e766f126",
-    "eTag": "0x8D562831044DDD0",
-    "contentType": "application/octet-stream",
-    "contentLength": 2248,
-    "blobType": "BlockBlob",
-    "url": "https://egblobstore.blob.core.windows.net/{containername}/blobname.jpg",
-    "sequencer": "000000000000272D000000000003D60F",
-    "storageDiagnostics": {
-      "batchId": "7b11c4ce-1c34-4416-848b-1730e766f126"
+[
+    {
+        "id": "3c5bf434-6acd-4e79-bb43-ba5e70c906b5",
+        "data": {
+            "Id": "https://key-vault-name.vault.azure.net/secrets/secret-name-in-az/versionid",
+            "VaultName": "key-vault-name",
+            "ObjectType": "Secret",
+            "ObjectName": "secret-name-in-az",
+            "Version": "versionid",
+            "NBF": null,
+            "EXP": 1631516109
+        },
+        "topic": "/subscriptions/xxxx/resourceGroups/rg-name/providers/Microsoft.KeyVault/vaults/key-vault-name",
+        "subject": "secret-name-in-az",
+        "event_type": "Microsoft.KeyVault.SecretNearExpiry"
+    },
+    {
+        "id": "65de3595-5882-40cc-b166-cd0b7996c69f",
+        "data": {
+            "Id": "https://key-vault-name.vault.azure.net/secrets/secret-name-in-az/versionid",
+            "VaultName": "key-vault-name",
+            "ObjectType": "Secret",
+            "ObjectName": "secret-name-in-az",
+            "Version": "versionid",
+            "NBF": null,
+            "EXP": 1631516109
+        },
+        "topic": "/subscriptions/xxxx/resourceGroups/rg-name/providers/Microsoft.KeyVault/vaults/key-vault-name",
+        "subject": "secret-name-in-az",
+        "event_type": "Microsoft.KeyVault.SecretNewVersionCreated"
     }
-  },
-  "dataVersion": "",
-  "metadataVersion": "1"
-}]
+]

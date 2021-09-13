@@ -5,7 +5,8 @@ import os
 import azure.functions as func
 from TriggerKeyRotation import run
 
-def main(event: func.EventGridEvent):
+
+def main(event: func.EventGridEvent) -> None:
     event_json = event.get_json()
     result = json.dumps(
         {
@@ -40,6 +41,6 @@ def main(event: func.EventGridEvent):
         mesg = f"A new SAS version created:  {event.get_json()}"
     else:
         mesg = f"Event Type: {event.event_type} \
-                 Event_info: {event_json}"
+                 Event_info: {event_json}"   
     logging.info(mesg)
-    return mesg
+    # return func.HttpResponse(mesg, status_code=200)

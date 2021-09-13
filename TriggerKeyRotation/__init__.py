@@ -20,7 +20,7 @@ def get_storage_keys(
     storage_account_name,
     subscription_id,
     credential=DefaultAzureCredential(),
-):
+) -> (str,str):
     storage_client = StorageManagementClient(credential, subscription_id)
     storage_keys = storage_client.storage_accounts.list_keys(
         resource_group, storage_account_name
@@ -36,7 +36,7 @@ def get_storage_account_sas(
     storage_account_key,
     permission=None,
     expiry=datetime.utcnow() + timedelta(hours=1),
-):
+) -> str:
     sas_token = generate_account_sas(
         storage_account_name,
         storage_account_key,
@@ -48,18 +48,18 @@ def get_storage_account_sas(
     return sas_token
 
 
-def test_sas_token(storage_account_name, sas_token=None):
+def test_sas_token(storage_account_name, sas_token=None) -> bool:
     test_file_url = f"https://{storage_account_name}.blob.core.windows.net/data/test.txt?{sas_token}"
     r = requests.get(test_file_url)
     return True if r.status_code == 200 else False
 
 
-def create_akv_key(keyvault_name, key_name, value, credential):
+def create_akv_key(keyvault_name, key_name, value, credential) -> (str,str):
     secret_client = SecretClient(
         vault_url=f"https://{keyvault_name}.vault.azure.net/", credential=credential
     )
     secret = secret_client.set_secret(
-        key_name, value, expires_on=datetime.utcnow() + timedelta(hours=6)
+        key_name, value, expires_on=datetime.utcnow() + timedelta(hours=1)
     )
     return secret.properties.version, secret.properties.expires_on
 
@@ -70,7 +70,7 @@ def run(
     storage_container,
     keyvault_name,
     subscription_id=None,
-):
+) -> func.HttpResponse:
     credentials = ManagedIdentityCredential()
     k1, k2 = get_storage_keys(
         storage_account_name=storage_account,
